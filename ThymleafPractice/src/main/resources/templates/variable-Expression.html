@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:th="http//www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Var Expression</title>
+</head>
+<body>
+    <h1>User Details</h1>
+    <div>
+        <p th:text="'Name: ' + ${u.name}">Name</p>
+        <p th:text="${u.email}"></p>
+        <p th:text="${u.gender}"></p>
+        <p th:text="${u.role}"></p>
+    </div>
+</body>
+</html>
