@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        form { margin-bottom: 30px; }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Registration Form</h1>
+
+<form method="post"
+      th:action="@{/register/save}"
+      th:object="${userForm}">
+
+    <label>Name:</label>
+    <input type="text" th:field="*{name}" required/>
+    <br/><br/>
+
+    <label>Email:</label>
+    <input type="email" th:field="*{email}" required/>
+    <br/><br/>
+
+    <label>Password:</label>
+    <input type="password" th:field="*{password}" required/>
+    <br/><br/>
+
+    <label>Gender:</label>
+    <input type="radio" th:field="*{gender}" value="Male"/> Male
+    <input type="radio" th:field="*{gender}" value="Female"/> Female
+    <br/><br/>
+
+    <label>Profession:</label>
+    <select th:field="*{profession}">
+        <option value="">--Select--</option>
+        <option th:each="p : ${listProfession}"
+                th:value="${p}"
+                th:text="${p}">
+        </option>
+    </select>
+    <br/><br/>
+
+    <label>Address:</label><br/>
+    <textarea th:field="*{address}" rows="4" cols="30"></textarea>
+    <br/><br/>
+
+    <button type="submit">Register</button>
+
+</form>
+
+<hr/>
+
+<h2>Registered Users</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Gender</th>
+        <th>Profession</th>
+        <th>Address</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="u : ${users}">
+        <td th:text="${u.name}"></td>
+        <td th:text="${u.email}"></td>
+        <td th:text="${u.gender}"></td>
+        <td th:text="${u.profession}"></td>
+        <td th:text="${u.address}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
